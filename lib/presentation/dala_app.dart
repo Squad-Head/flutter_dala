@@ -95,20 +95,47 @@ class DalaApp extends HookConsumerWidget {
             body: SafeArea(
               child: Padding(
                 padding: const EdgeInsets.all(10),
-                child: Builder(
-                  builder: (context) => !state.isEnabled
-                      ? CounterHome(
-                          key: screenKey,
-                          title: 'abc',
-                        )
-                      : AnimatedBuilder(
-                          animation: DefaultTabController.of(context)!,
-                          builder: (context, _) => _frame(
-                              Devices
-                                  .all[DefaultTabController.of(context)!.index],
-                              state,
-                              screenKey),
+                child: Column(
+                  children: [
+                    const SizedBox(
+                      height: 10,
+                    ), // Should we use screenutil instead ?????
+
+                    Row(
+                      children: [
+                        Expanded(flex: 3, child: Column()),
+                        Expanded(
+                          flex: 4,
+                          child: Container(
+                            padding: const EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              color: Colors.red,
+                              borderRadius: BorderRadius.circular(25),
+                            ),
+                            child: Builder(
+                              // why we using builder here ?
+                              builder: (context) => !state.isEnabled
+                                  ? CounterHome(
+                                      key: screenKey,
+                                      title: 'abc',
+                                    )
+                                  : AnimatedBuilder(
+                                      animation:
+                                          DefaultTabController.of(context)!,
+                                      builder: (context, _) => _frame(
+                                          Devices.all[
+                                              DefaultTabController.of(context)!
+                                                  .index],
+                                          state,
+                                          screenKey),
+                                    ),
+                            ),
+                          ),
                         ),
+                        Expanded(flex: 3, child: Column()),
+                      ],
+                    ),
+                  ],
                 ),
               ),
             ),
