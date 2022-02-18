@@ -4,6 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_ui_toolkit/Projects/counter_app/counter_home.dart';
 import 'package:flutter_ui_toolkit/application/home/home_provider.dart';
 import 'package:flutter_ui_toolkit/application/home/home_state.dart';
+import 'package:flutter_ui_toolkit/presentation/common_values/colors.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class DalaApp extends HookConsumerWidget {
@@ -31,6 +32,9 @@ class DalaApp extends HookConsumerWidget {
   Widget build(BuildContext context, ref) {
     final GlobalKey screenKey = useMemoized(() => GlobalKey());
     final state = ref.watch(homeProvider);
+
+    String _exampleCode =
+        "class MyHomePage extends StatefulWidget { MyHomePage({Key key, this.title}) : super(key: key); final String title; @override _MyHomePageState createState() => _MyHomePageState();}";
 
     final event = ref.read(homeProvider.notifier);
     return DeviceFrameTheme(
@@ -95,47 +99,105 @@ class DalaApp extends HookConsumerWidget {
             body: SafeArea(
               child: Padding(
                 padding: const EdgeInsets.all(10),
-                child: Column(
-                  children: [
-                    const SizedBox(
-                      height: 10,
-                    ), // Should we use screenutil instead ?????
+                child: LayoutBuilder(
+                  builder: (context, constrainsts) => Row(
+                    children: [
+                      Expanded(child: Container()),
 
-                    Row(
-                      children: [
-                        Expanded(flex: 3, child: Column()),
-                        Expanded(
-                          flex: 4,
-                          child: Container(
-                            padding: const EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                              color: Colors.red,
-                              borderRadius: BorderRadius.circular(25),
+                      //First Container //For widget lists
+                      Container(
+                        decoration: BoxDecoration(
+                            // color: CommonColors.containeColor,
+                            borderRadius: BorderRadius.circular(25)),
+                        height: constrainsts.maxHeight,
+                        width: constrainsts.maxWidth * 0.30,
+                        child: Column(
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                  color: CommonColors.containeColor,
+                                  borderRadius: BorderRadius.circular(25)),
+                              height: constrainsts.maxHeight * 0.1,
                             ),
-                            child: Builder(
-                              // why we using builder here ?
-                              builder: (context) => !state.isEnabled
-                                  ? CounterHome(
-                                      key: screenKey,
-                                      title: 'abc',
-                                    )
-                                  : AnimatedBuilder(
-                                      animation:
-                                          DefaultTabController.of(context)!,
-                                      builder: (context, _) => _frame(
-                                          Devices.all[
-                                              DefaultTabController.of(context)!
-                                                  .index],
-                                          state,
-                                          screenKey),
-                                    ),
+                            SizedBox(
+                              height: constrainsts.maxHeight * 0.02,
                             ),
-                          ),
+                            Container(
+                              decoration: BoxDecoration(
+                                  color: CommonColors.containeColor,
+                                  borderRadius: BorderRadius.circular(25)),
+                              height: constrainsts.maxHeight * 0.86,
+                            ),
+                          ],
                         ),
-                        Expanded(flex: 3, child: Column()),
-                      ],
-                    ),
-                  ],
+                      ),
+                      SizedBox(
+                        width: constrainsts.maxWidth * 0.02,
+                      ),
+
+                      //Second Container //For emulation the devices.
+                      Container(
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                            color: CommonColors.containeColor,
+                            borderRadius: BorderRadius.circular(25)),
+                        height: constrainsts.maxHeight,
+                        width: constrainsts.maxWidth * 0.30,
+                        child: Builder(
+                          // why we using builder here ?
+                          builder: (context) => !state.isEnabled
+                              ? CounterHome(
+                                  key: screenKey,
+                                  title: 'abc',
+                                )
+                              : AnimatedBuilder(
+                                  animation: DefaultTabController.of(context)!,
+                                  builder: (context, _) => _frame(
+                                      Devices.all[
+                                          DefaultTabController.of(context)!
+                                              .index],
+                                      state,
+                                      screenKey),
+                                ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: constrainsts.maxWidth * 0.02,
+                      ),
+
+                      //Third Container //For Code snippet showing.
+                      SizedBox(
+                          height: constrainsts.maxHeight,
+                          width: constrainsts.maxWidth * 0.30,
+                          child: Column(
+                            children: [
+                              Container(
+                                height: constrainsts.maxHeight * 0.35,
+                                decoration: BoxDecoration(
+                                    color: CommonColors.containeColor,
+                                    borderRadius: BorderRadius.circular(25)),
+                              ),
+                              SizedBox(
+                                height: constrainsts.maxHeight * 0.03,
+                              ),
+                              Container(
+                                height: constrainsts.maxHeight * 0.62,
+                                decoration: BoxDecoration(
+                                  color: CommonColors.containeColor,
+                                  borderRadius: BorderRadius.circular(25),
+                                ),
+                                // child: const SingleChildScrollView(
+                                //     // child: HighlightView(
+                                //     //   _exampleCode,
+                                //     //   language: 'dart',
+                                //     // ),
+                                //     ),
+                              )
+                            ],
+                          )),
+                      Expanded(child: Container()),
+                    ],
+                  ),
                 ),
               ),
             ),
