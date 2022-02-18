@@ -4,6 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_ui_toolkit/Projects/counter_app/counter_home.dart';
 import 'package:flutter_ui_toolkit/application/home/home_provider.dart';
 import 'package:flutter_ui_toolkit/application/home/home_state.dart';
+import 'package:flutter_ui_toolkit/presentation/tree_view.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class DalaApp extends HookConsumerWidget {
@@ -103,11 +104,23 @@ class DalaApp extends HookConsumerWidget {
                         )
                       : AnimatedBuilder(
                           animation: DefaultTabController.of(context)!,
-                          builder: (context, _) => _frame(
-                              Devices
-                                  .all[DefaultTabController.of(context)!.index],
-                              state,
-                              screenKey),
+                          builder: (context, _) => Row(
+                            children: [
+                              const Expanded(
+                                flex: 30,
+                                child: TreeViewWidget(),
+                              ),
+                              Expanded(
+                                flex: 70,
+                                child: _frame(
+                                    Devices.all[
+                                        DefaultTabController.of(context)!
+                                            .index],
+                                    state,
+                                    screenKey),
+                              ),
+                            ],
+                          ),
                         ),
                 ),
               ),
