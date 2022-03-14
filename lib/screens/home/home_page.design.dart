@@ -19,7 +19,7 @@ final generatedScreensHomeHomePageHomePagePage = ViewerDocumentPage(
       ctorName: 'HomePage',
       designLink: null,
       builder: ViewerWidgetBuilder(
-        build: (context, factory) => HomePage(),
+        build: (context, factory) => const HomePage(),
         fieldMetaDataset: const [],
       ),
       sourceCode: const ViewerSourceCode(
