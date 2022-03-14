@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_treeview/flutter_treeview.dart';
 
 class TreeViewWidget extends StatefulWidget {
@@ -14,81 +13,9 @@ class _TreeViewWidgetState extends State<TreeViewWidget> {
 
   late TreeViewController _treeViewController;
 
-  List<Map<String, dynamic>> lists = [
-    {
-      "label": "widgets test",
-      "key": "widgets test",
-      "children": [
-        {
-          "label": "widgets test",
-          "key": "widgets test",
-        },
-        {
-          "label": "widgets test",
-          "key": "widgets test",
-        },
-        {
-          "label": "widgets test",
-          "key": "widgets test",
-        },
-        {
-          "label": "widgets test",
-          "key": "widgets test",
-          "children": [
-            {
-              "label": "widgets test",
-              "key": "widgets test",
-            }
-          ],
-        },
-        {
-          "label": "widgets test",
-          "key": "widgets test",
-          "children": [
-            {
-              "label": "widgets test",
-              "key": "widgets test",
-            },
-            {
-              "label": "widgets test",
-              "key": "widgets test",
-            },
-          ],
-        },
-      ]
-    },
-    {
-      "label": "widgets test",
-      "key": "widgets test",
-    },
-  ];
-
-  List<Node> _geneTreeNodes(List list) {
-    List treeNodes = <Node>[];
-    String label;
-    String key;
-    List children;
-
-    for (int i = 0; i < list.length; i++) {
-      final Map<String, dynamic> item = list[i];
-      label = item["label"];
-      key = item["key"];
-      children = item["children"] as List;
-
-      treeNodes.add(Node(
-        label: label,
-        key: key,
-        children: _geneTreeNodes(children),
-      ));
-    }
-
-    return treeNodes as List<Node>;
-  }
-
   @override
   void initState() {
     super.initState();
-    // nodes = _geneTreeNodes(lists);
     nodes = [
       const Node<String>(
         label: 'widgets test',

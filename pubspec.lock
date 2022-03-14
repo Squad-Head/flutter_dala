@@ -76,6 +76,20 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_design:
+    dependency: "direct main"
+    description:
+      name: flutter_design
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.11-pre+1"
+  flutter_design_annotation:
+    dependency: transitive
+    description:
+      name: flutter_design_annotation
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.11-pre+1"
   flutter_hooks:
     dependency: "direct main"
     description:
@@ -165,6 +179,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.0"
+  recase:
+    dependency: transitive
+    description:
+      name: recase
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.0.0"
   riverpod:
     dependency: transitive
     description:

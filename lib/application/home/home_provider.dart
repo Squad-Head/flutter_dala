@@ -22,7 +22,7 @@ class HomeNotifier extends StateNotifier<HomeState> {
       state = state.copyWith(isKeyboard: !state.isKeyboard);
 
   void toggleDarkNess() => state = state.copyWith(isDark: !state.isDark);
-
+  void enableDisable() => state = state.copyWith(isEnabled: !state.isEnabled);
   void toggleOrientation() => state = state.copyWith(
       orientation: state.orientation == Orientation.landscape
           ? Orientation.portrait
