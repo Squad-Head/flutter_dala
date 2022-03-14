@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_design/flutter_design.dart';
+part 'counter_home.design.dart';
 
+@design
 class CounterHome extends StatefulWidget {
   const CounterHome({Key? key, required this.title}) : super(key: key);
 
