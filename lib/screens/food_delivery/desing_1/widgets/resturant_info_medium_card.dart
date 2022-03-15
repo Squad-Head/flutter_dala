@@ -1,22 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ui_toolkit/ecommerce/constrants.dart';
-import 'package:flutter_ui_toolkit/ecommerce/data.dart';
+import 'package:flutter_design/flutter_design.dart';
+import 'package:flutter_ui_toolkit/screens/food_delivery/desing_1/constrants.dart';
 
-class ResturantInfoMediumCard extends StatelessWidget {
-  const ResturantInfoMediumCard({
-    Key? key,
+import '../data.dart';
+part 'resturant_info_medium_card.design.dart';
+
+class ResturantInfo {
+  const ResturantInfo({
     required this.title,
     required this.image,
     required this.deliveryTime,
     required this.rating,
-    required this.press,
     required this.location,
-  }) : super(key: key);
+  });
 
   final String title, image, location;
   final int deliveryTime;
   final double rating;
-  final VoidCallback press;
+}
+
+@design
+class ResturantInfoMediumCard extends StatelessWidget {
+  const ResturantInfoMediumCard({
+    Key? key,
+    required this.resturantInfo,
+  }) : super(key: key);
+
+  @DesignField(
+      parameter: ResturantInfo(
+          title: 'Daylight cofee',
+          image:
+              'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+          deliveryTime: 24,
+          rating: 4.6,
+          location: 'colorado, San Fransisc'))
+  final ResturantInfo resturantInfo;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +42,7 @@ class ResturantInfoMediumCard extends StatelessWidget {
       borderRadius: const BorderRadius.all(
         Radius.circular(6),
       ),
-      onTap: press,
+      onTap: () {},
       child: SizedBox(
         width: 200,
         child: Column(
@@ -32,7 +50,7 @@ class ResturantInfoMediumCard extends StatelessWidget {
           children: [
             AspectRatio(
               aspectRatio: 1.25,
-              child: Image.asset(image),
+              child: Image.network(resturantInfo.image),
             ),
             const SizedBox(height: defaultPadding / 5),
             Text(
@@ -42,7 +60,7 @@ class ResturantInfoMediumCard extends StatelessWidget {
               style: Theme.of(context).textTheme.headline6,
             ),
             Text(
-              location,
+              resturantInfo.location,
               maxLines: 1,
               style: const TextStyle(
                 color: kBodyTextColor,
@@ -69,12 +87,12 @@ class ResturantInfoMediumCard extends StatelessWidget {
                         ),
                       ),
                       child: Text(
-                        rating.toString(),
+                        resturantInfo.rating.toString(),
                         style: const TextStyle(color: Colors.white),
                       ),
                     ),
                     const Spacer(),
-                    Text("$deliveryTime min"),
+                    Text("${resturantInfo.deliveryTime} min"),
                     const Spacer(),
                     const CircleAvatar(
                       radius: 3,

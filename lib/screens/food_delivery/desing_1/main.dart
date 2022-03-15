@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ui_toolkit/ecommerce/screens/home/home_screens.dart';
+
+import 'home_screens.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,4 +17,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

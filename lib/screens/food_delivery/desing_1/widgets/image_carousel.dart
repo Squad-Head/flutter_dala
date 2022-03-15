@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ui_toolkit/ecommerce/constrants.dart';
-import 'package:flutter_ui_toolkit/ecommerce/data.dart';
+import 'package:flutter_design/flutter_design.dart';
+import 'package:flutter_ui_toolkit/screens/food_delivery/desing_1/constrants.dart';
 
+import '../data.dart';
+part 'image_carousel.design.dart';
+
+@design
 class ImageCarousel extends StatefulWidget {
   const ImageCarousel({
     Key? key,
@@ -31,8 +35,9 @@ class _ImageCarouselState extends State<ImageCarousel> {
               borderRadius: const BorderRadius.all(
                 Radius.circular(15),
               ),
-              child: Image.asset(
-                bigImage[index],
+              child: Image.network(
+                "https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=800",
+                fit: BoxFit.cover,
               ),
             ),
           ),

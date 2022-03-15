@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ui_toolkit/ecommerce/constrants.dart';
-import 'package:flutter_ui_toolkit/ecommerce/data.dart';
-import 'package:flutter_ui_toolkit/ecommerce/screens/home/components/image_carousel.dart';
-import 'package:flutter_ui_toolkit/ecommerce/screens/home/components/resurant_info_medium_card.dart';
-import 'package:flutter_ui_toolkit/ecommerce/screens/home/components/section_title.dart';
+import 'package:flutter_design/flutter_design.dart';
+import 'package:flutter_ui_toolkit/screens/food_delivery/desing_1/constrants.dart';
 
+import 'data.dart';
 
+import 'widgets/image_carousel.dart';
+import 'widgets/resturant_info_medium_card.dart';
+import 'widgets/section_title.dart';
+
+part 'home_screens.design.dart';
+
+@Design(
+    title: 'Food delivery design 1',
+    description: 'Mordern design ui implemented with minimal code')
 class HomeScreens extends StatelessWidget {
   const HomeScreens({Key? key}) : super(key: key);
 
@@ -64,15 +71,16 @@ class HomeScreens extends StatelessWidget {
               child: Row(
                 children: List.generate(
                   mediumCardData.length,
-                  (index) => Padding(
-                    padding: const EdgeInsets.only(right: defaultPadding),
+                  (index) => const Padding(
+                    padding: EdgeInsets.only(right: defaultPadding),
                     child: ResturantInfoMediumCard(
-                      title: mediumCardData[index]['name'],
-                      location: mediumCardData[index]['location'],
-                      image: mediumCardData[index]['image'],
-                      deliveryTime: mediumCardData[index]['delivertTime'],
-                      rating: mediumCardData[index]['rating'],
-                      press: () {},
+                      resturantInfo: ResturantInfo(
+                          title: 'Daylight cofee',
+                          image:
+                              'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+                          deliveryTime: 24,
+                          rating: 4.6,
+                          location: 'colorado, San Fransisc'),
                     ),
                   ),
                 ),
@@ -82,7 +90,8 @@ class HomeScreens extends StatelessWidget {
           SliverPadding(
             padding: const EdgeInsets.all(defaultPadding),
             sliver: SliverToBoxAdapter(
-              child: Image.asset("assets/image1.jpg"),
+              child: Image.network(
+                  "https://images.pexels.com/photos/3026808/pexels-photo-3026808.jpeg?auto=compress&cs=tinysrgb&w=800"),
             ),
           )
         ],
@@ -90,4 +99,3 @@ class HomeScreens extends StatelessWidget {
     );
   }
 }
-

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ui_toolkit/ecommerce/constrants.dart';
+import 'package:flutter_design/flutter_design.dart';
 
+import '../constrants.dart';
 
+part 'section_title.design.dart';
+
+@design
 class SectionTitle extends StatelessWidget {
   const SectionTitle({
     Key? key,
